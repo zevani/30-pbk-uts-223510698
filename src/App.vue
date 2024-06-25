@@ -1,5 +1,5 @@
 <template>
-  <div>    
+  <div>
     <div>
       <button
         v-for="option in options"
@@ -11,7 +11,7 @@
         {{ option }}
       </button>
     </div>
-    <p> {{ selectedOption }}</p>
+    <p>{{ selectedOption }}</p>
     <component :is="currentComponent"></component>
   </div>
 </template>
@@ -19,23 +19,29 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-import Post from './components/post.vue'
-import Todo from './components/todo.vue'
+import Post from './views/post.vue'
+import Todo from './views/todo.vue'
+import Albums from './views/Albums.vue'
 
-const options = ["Postingan", "Todo list"]
+const options = ["Postingan", "Todo list", "Albums"]
 const selectedOption = ref("Postingan")
+
 
 const currentComponent = computed(() => {
   if (selectedOption.value === "Postingan") {
     return Post
   } else if (selectedOption.value === "Todo list") {
     return Todo
+  } else if (selectedOption.value === "Albums") {
+    return Albums
   }
   return null
 })
 
+
 const selectOption = (option) => {
   selectedOption.value = option
+
 }
 </script>
 
